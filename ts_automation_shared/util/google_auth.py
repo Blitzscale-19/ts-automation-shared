@@ -2,9 +2,17 @@ from google.oauth2 import service_account
 from google.auth.transport.requests import Request
 from typing import Dict, List, Optional
 
+SCOPES = [
+    "https://www.googleapis.com/auth/calendar.events",
+    "https://www.googleapis.com/auth/calendar",
+    "https://www.googleapis.com/auth/meetings.space.created",
+    "https://www.googleapis.com/auth/meetings.space.readonly",
+    "https://www.googleapis.com/auth/meetings.space.settings",
+    "https://www.googleapis.com/auth/drive",
+]
 
 class GoogleAuthService:
-    def __init__(self, service_account_info: Dict, scopes: List[str]):
+    def __init__(self, service_account_info: Dict):
         """
         Initializes the GoogleAuthService with credentials and scopes.
 
@@ -12,7 +20,6 @@ class GoogleAuthService:
         :param scopes: List of OAuth scopes.
         """
         self.service_account_info = service_account_info
-        self.scopes = scopes
 
     def get_access_token(self, subject: Optional[str] = None) -> str:
         """
@@ -25,10 +32,12 @@ class GoogleAuthService:
         try:
             credentials = service_account.Credentials.from_service_account_info(
                 self.service_account_info,
-                scopes=self.scopes,
+                scopes=SCOPES,
                 subject=subject
             )
             credentials.refresh(Request())
             return credentials.token
         except Exception as e:
-            raise RuntimeError(f"Error generating access token: {e}") from e
+            print(f"Error generating access token with delegation: {e}")
+            return None
+
