@@ -1,0 +1,16 @@
+[project]
+name = "ts-automation-shared"
+version = "0.1.0"
+description = "Shared code used across ts services"
+authors = [{ name = "Profitability Pod" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "google-cloud-bigquery==3.31.0",
+  "google-cloud-bigquery-storage==2.30.0",
+  "slack-sdk==3.27.0"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
