@@ -21,7 +21,7 @@ class GoogleAuthService:
         """
         self.service_account_info = service_account_info
 
-    def get_access_token(self, subject: Optional[str] = None) -> str:
+    def assign_scoped_and_get_access_token(self, subject: Optional[str] = None) -> str:
         """
         Returns an access token for the service account, optionally impersonating a user.
 
