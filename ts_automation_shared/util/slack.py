@@ -47,6 +47,3 @@ class SlackAlert:
         except SlackApiError as err:
             logging.error("Failed to send Slack message: %s", err.response["error"])
             return None
-
-    def send_message_at_ai_copilot_errors(self, message: str):
-        self.send_slack_message(message=message, is_error=True, slack_channel=self.ai_copilot_errors_slack_channel_id)
