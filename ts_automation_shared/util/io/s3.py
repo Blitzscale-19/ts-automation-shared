@@ -3,10 +3,6 @@ import io
 import boto3
 import pandas as pd
 
-# Exceptions
-from exceptions.exceptions import InternalError
-
-
 class S3:
     def __init__(self, s3_client):
         s3_config = s3_client
@@ -84,6 +80,6 @@ class S3:
 
         except Exception as exc:
             # Catch any other exception and log it
-            raise InternalError(f"An unexpected error occurred while uploading the file: {exc}") from exc
+            print(f"An unexpected error occurred while uploading the file: {exc}")
 
         return file_url
