@@ -13,7 +13,7 @@ class S3:
         )
 
         self.region = s3_config["region"]
-        self.bucket = s3_config["nushop_ops_assets"]
+        self.bucket = s3_config["bucket_name"]
 
     def get_file_url_path(self, bucket: str = None) -> str:
         """
