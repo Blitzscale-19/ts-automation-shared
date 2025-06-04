@@ -4,9 +4,7 @@ import boto3
 import pandas as pd
 
 class S3:
-    def __init__(self, s3_client):
-        s3_config = s3_client
-
+    def __init__(self, s3_config):
         self.s3 = boto3.client(
             "s3",
             aws_access_key_id=s3_config["accessKeyId"],
